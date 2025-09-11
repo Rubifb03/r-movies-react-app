@@ -1,12 +1,17 @@
-# React + Vite
+# R-Movies (movies-react-app)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Explora películas populares, busca por título y mira trailers usando la API de [The Movie Database (TMDB)](https://www.themoviedb.org/).
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Home** con “Populares ahora” y chips por género.
+- **Listado de películas** con hero destacado.
+- **Búsqueda** por título (ES) con manejo de estados (loading/empty/error).
+- **Modal en hover** sobre tarjetas con sinopsis y botón “Ver tráiler”.
+- **Detalle de película** en `/movie/:id` con fondo, overview y enlace al tráiler.
 
-## Expanding the ESLint configuration
+## Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React + Vite
+- React Router
+- TMDB API
