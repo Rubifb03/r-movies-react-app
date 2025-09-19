@@ -4,7 +4,7 @@
   padding: 20px;
   text-align: left;
   background-color: black;
-  height: 450px;
+  /* height: 450px; */
 }
 
 .search__title {
@@ -75,6 +75,9 @@
   display: flex;
   gap: 0.5rem;
   padding: 0 0.7rem;
+  padding: 0 0.7rem 0.7rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .search__btn--trailer,
@@ -93,3 +96,53 @@
   background: #2a2a2a;
   color: #fff;
 }
+
+.search__actions .favbtn {
+  background: #1a1a1a;
+  color: #eee;
+  border: 1px solid #333;
+  border-radius: 8px;           
+  padding: 0.45rem 0.6rem;      
+  text-decoration: none;       
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.search__actions .favbtn:hover {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.search__actions .favbtn.is-active {
+  background: #ff2d2d;
+  border-color: transparent;
+  color: #fff;
+}
+
+.search__actions .favbtn.favbtn--md {
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.search__actions .wlbtn,
+.search__actions .rstars__clear,
+.search__actions .rstars__star {
+  border-radius: 8px;
+}
+.search__actions .rstars { margin-left: .1rem; }
+
+.search__history { margin-top: .6rem; }
+.search__history-head { display:flex; justify-content:space-between; align-items:center; opacity:.9; font-size:.95rem; }
+.search__history-clear { background:transparent; border:1px solid #333; color:#ddd; border-radius:8px; padding:.25rem .5rem; cursor:pointer; }
+.search__history-clear:hover { background:#1a1a1a; color:#fff; }
+.search__history-chips { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.4rem; }
+.search__chip {
+  padding:.4rem .7rem; border-radius:999px; background:#222; color:#ddd;
+  border:1px solid #333; cursor:pointer;
+}
+.search__chip:hover { background:#2a2a2a; color:#fff; }
+
+

@@ -3,14 +3,21 @@ import { useSearchParams, Link } from "react-router-dom";
 import { searchMovies } from "../utils/api";
 import "./Search.css";
 import MovieCard from "../components/MovieCard/MovieCard";
+import FavoriteButton from "../components/FavoriteButton/FavoriteButton";
+import WatchlistButton from "../context/WatchlistButton";
+import RatingStars from "../components/RatingStars/RatingStars";
+import { useAuth } from "../context/AuthContext";
+import { getHistory, pushHistory, clearHistory } from "../utils/userdata";
 
 function Search() {
+  const { user } = useAuth();
   const [params, setParams] = useSearchParams();
   const initial = params.get("q") || "";
   const [query, setQuery] = useState(initial);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
+  const [history, setHistory] = useState(getHistory(user?.id));
 
   async function doSearch(q) {
     const term = q.trim();
@@ -24,6 +31,7 @@ function Search() {
       setErr("");
       const data = await searchMovies(term, 1);
       setResults(data.results || []);
+      setHistory(pushHistory(user?.id, term));
     } catch (e) {
       console.error(e);
       setErr("No se pudo realizar la búsqueda");
@@ -31,6 +39,10 @@ function Search() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    setHistory(getHistory(user?.id));
+  }, [user]);
 
   useEffect(() => {
     if (initial) doSearch(initial);
@@ -59,6 +71,40 @@ function Search() {
           Buscar
         </button>
       </form>
+
+      {/* Historial */}
+      {history?.length > 0 && (
+        <div className="search__history">
+          <div className="search__history-head">
+            <span>Busquedas recientes:</span>
+            <button
+              className="search__history-clear"
+              onClick={() => {
+                clearHistory(user?.id);
+                setHistory([]);
+              }}
+            >
+              Limpiar
+            </button>
+          </div>
+          <div className="search__history-chips">
+            {history.map((h) => (
+              <button
+                key={h}
+                className="search__chip"
+                onClick={() => {
+                  setQuery(h);
+                  setParams({ q: h });
+                  doSearch(h);
+                }}
+              >
+                {h}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {loading && <p className="search__state">Buscando…</p>}
       {err && <p className="search__error">{err}</p>}
 
@@ -67,6 +113,8 @@ function Search() {
           No se encontraron resultados para “{initial}”.
         </p>
       )}
+
+      {/* === Tarjetas simples con acciones (incluye Favoritos) === */}
       <section className="search__grid">
         {results.map((m) => (
           <article key={m.id} className="search__card">
@@ -81,6 +129,7 @@ function Search() {
               alt={m.title}
             />
             <h3 className="search__name">{m.title}</h3>
+
             <div className="search__actions">
               <button
                 className="search__btn--trailer"
@@ -95,15 +144,18 @@ function Search() {
               >
                 Ver tráiler
               </button>
-              <Link to="/movies" className="search__btn--more">
-                Ver en Películas
+              <Link to={`/movie/${m.id}`} className="search__btn--more">
+                Detalles
               </Link>
+              <FavoriteButton movieId={m.id} />
+              <WatchlistButton movieId={m.id} />
+              <RatingStars movieId={m.id} size="sm" />
             </div>
           </article>
         ))}
       </section>
 
-      <section className="search__grid">
+      <section className="search__grid" style={{ display: "none" }}>
         {results.map((m) => (
           <MovieCard key={m.id} movie={m} />
         ))}

@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./MovieCard.css";
 import { getMovieVideos } from "../../utils/api";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import WatchlistButton from "../../context/WatchlistButton";
+import RatingStars from "../RatingStars/RatingStars";
 
 export default function MovieCard({ movie }) {
   const [open, setOpen] = useState(false);
@@ -55,6 +58,13 @@ export default function MovieCard({ movie }) {
         loading="lazy"
       />
       <h3 className="mc__title">{movie.title}</h3>
+
+      <div className="mc__inline-actions">
+        {" "}
+        <FavoriteButton movieId={movie.id} />
+        <WatchlistButton movieId={movie.id} />
+        <RatingStars movieId={movie.id} size="sm" />
+      </div>
 
       {open && (
         <div

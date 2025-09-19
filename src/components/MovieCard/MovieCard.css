@@ -69,7 +69,7 @@
 .mc__modal__overview {
   font-size: 0.9rem;
   opacity: 0.85;
-  max-width: 460px;
+  max-width: 10000px;
   max-height: 130px;
   overflow: auto;
 }
@@ -95,4 +95,40 @@
 }
 .mc__btn--primary:hover {
   filter: brightness(1.05);
+}
+
+.mc__inline-actions {
+  /* display: grid; */
+  grid-template-columns: repeat(2, max-content);
+  gap: .5rem .6rem;
+  align-items: center;
+  margin-top: .35rem;
+}
+
+.mc__inline-actions .rstars{
+  grid-column: 1 / -1; 
+}
+
+
+.mc__title {
+  font-size: 0.95rem;
+  line-height: 1.2;
+  margin-bottom: .1rem; 
+}
+
+
+
+.mc__inline-actions .favbtn,
+.mc__inline-actions .wlbtn,
+.mc__inline-actions .rstars,
+.mc__inline-actions .rstars__star,
+.mc__inline-actions .rstars__clear{
+  position: relative;
+  z-index: 1;
+  margin-top: 12px;
+}
+
+.mc__inline-actions .rstars{
+  padding: .1rem 0;
+  margin-top: 2px;
 }

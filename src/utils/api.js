@@ -31,11 +31,12 @@ export async function getMovieVideos(id) {
 }
 
 // Películas por género
-export async function getMoviesByGenre(genreId, page = 1) {
+export async function getMoviesByGenre(genreId, page = 1, year) {
   return fetchFromApi("/discover/movie", {
     with_genres: genreId,
     sort_by: "popularity.desc",
     page,
+    ...(year ? { primary_release_year: year } : {})
   });
 }
 

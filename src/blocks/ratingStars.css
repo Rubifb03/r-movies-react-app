@@ -1,0 +1,18 @@
+.rstars { display:inline-flex; align-items:center; gap:.25rem; }
+.rstars__star {
+  background: transparent;
+  border: 1px solid #333;
+  color: #888;
+  border-radius: 8px;
+  width: 32px; height: 32px;
+  line-height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.rstars__star.is-on { color: #ffcc00; border-color:#665500; }
+.rstars__star:hover { background:#1a1a1a; color:#fff; }
+.rstars__clear {
+  background:#1a1a1a; color:#ddd; border:1px solid #333; border-radius:8px;
+  padding:0 .45rem; height:32px; cursor:pointer;
+}
+.rstars--sm .rstars__star { width:26px; height:26px; font-size:16px; line-height:24px; }

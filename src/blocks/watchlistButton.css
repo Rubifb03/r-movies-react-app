@@ -1,0 +1,17 @@
+.wlbtn {
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: #eee;
+  border-radius: 10px;
+  padding: .55rem .9rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.wlbtn:hover { background:#222; }
+.wlbtn.is-active { background:#2a2a2a; border-color:#444; color:#fff; }
+.wlbtn--sm { font-size:.9rem; }
+.wlbtn--md { font-size:1rem; padding:.65rem 1rem; }

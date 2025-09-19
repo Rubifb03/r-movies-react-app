@@ -28,8 +28,9 @@ const GENRE_MAP = {
 };
 
 export default function MoviesByGenre() {
-  const { genre } = useParams(); // ej: "action"
+  const { genre } = useParams();
   const navigate = useNavigate();
+  const [year, setYear] = useState("");
 
   const meta = useMemo(() => GENRE_MAP[genre?.toLowerCase?.() || ""], [genre]);
 
@@ -55,7 +56,7 @@ export default function MoviesByGenre() {
 
     (async () => {
       try {
-        const data = await getMoviesByGenre(meta.id, 1);
+        const data = await getMoviesByGenre(meta.id, 1, year);
         setMovies(data?.results || []);
       } catch (e) {
         setError("No se pudieron cargar las películas por género.");
@@ -63,18 +64,17 @@ export default function MoviesByGenre() {
         setLoading(false);
       }
     })();
-  }, [meta]);
+  }, [meta, year]);
 
   const loadMore = async () => {
     if (!meta) return;
     setLoadingMore(true);
     try {
       const next = page + 1;
-      const data = await getMoviesByGenre(meta.id, next);
+      const data = await getMoviesByGenre(meta.id, next, year);
       setMovies((prev) => [...prev, ...(data?.results || [])]);
       setPage(next);
     } catch {
-      // opcional: mensaje
     } finally {
       setLoadingMore(false);
     }
@@ -121,6 +121,24 @@ export default function MoviesByGenre() {
             <Link to="/movies" className="mg__btn">
               Ver populares
             </Link>
+            <div className="mg__filter">
+              <label className="mg__filter-label">Año:</label>
+              <select
+                className="mg__select"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+              >
+                <option value="">Todos</option>+{" "}
+                {Array.from({ length: 45 }).map((_, i) => {
+                  const y = new Date().getFullYear() - i;
+                  return (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  );
+                })}{" "}
+              </select>{" "}
+            </div>
           </div>
         </div>
       </section>
