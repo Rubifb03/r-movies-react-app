@@ -1,0 +1,118 @@
+.about {
+  color: #fff;
+  margin-left: 120px;
+  text-align: left;
+  padding: 20px;
+  background: #000;
+}
+
+.about__hero {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 16px;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.8)),
+              radial-gradient(60% 80% at 80% 20%, rgba(255,255,255,0.08), transparent 60%),
+              #111;
+  border: 1px solid #1f1f1f;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.about__logo {
+  font-size: 5rem;
+  font-weight: bold;
+  color: red;
+}
+
+.about__title {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin: 0 0 6px;
+}
+.about__subtitle {
+  opacity: 0.9;
+  margin: 0 0 10px;
+}
+
+/* GRID */
+.about__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.about__card {
+  background: #121212;
+  border: 1px solid #1f1f1f;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.about__card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.about__list {
+  margin: 8px 0 0 16px;
+  opacity: 0.95;
+}
+.about__list li { margin: 4px 0; }
+
+.about__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 10px;
+  padding: 0;
+  list-style: none;
+}
+.about__tags li {
+  background: #1b1b1b;
+  border: 1px solid #262626;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+.about__disclaimer {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 0.95rem;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: #eee;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: #222; }
+.btn--primary {
+  background: #ff2d2d;
+  color: #fff;
+  border-color: transparent;
+}
+.btn--ghost {
+  background: transparent;
+  color: #fff;
+  border-color: #fff3;
+}
+.btn--ghost:hover { background: #fff1; }
+
+.about__cta {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+@media (max-width: 720px) {
+  .about { margin-left: 90px; }
+  .about__hero { grid-template-columns: 60px 1fr; }
+  .about__logo { width: 56px; height: 56px; font-size: 1.5rem; }
+}

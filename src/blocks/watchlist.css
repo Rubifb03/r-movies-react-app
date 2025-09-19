@@ -1,0 +1,15 @@
+.watchlist {
+  color: #fff;
+  margin-left: 120px;
+  padding: 20px;
+  text-align: left;
+  background: #000;
+  min-height: 60vh;
+}
+.watchlist__title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 1rem; }
+.watchlist__state { opacity: .9; }
+.watchlist__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}

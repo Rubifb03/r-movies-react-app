@@ -1,0 +1,21 @@
+.favs {
+  color: #fff;
+  margin-left: 120px;
+  padding: 20px;
+  background: #000;
+  text-align: left;
+  min-height: 60vh;
+}
+
+.favs__title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin: 0 0 1rem;
+}
+
+.favs__state { opacity: .9; }
+
+.favs__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
